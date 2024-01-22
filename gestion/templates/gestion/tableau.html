@@ -1,0 +1,30 @@
+<!-- gestion/templates/gestion/tableau.html -->
+{% extends 'base.html' %}
+
+{% block title %}Tableau des Rapports{% endblock %}
+
+{% block content %}
+  <h2>Tableau des Rapports</h2>
+ 
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Description</th>
+        <th>Date</th>
+        <!-- Ajoutez d'autres colonnes si nécessaire -->
+      </tr>
+    </thead>
+    <tbody>
+      {% for report in reports %}
+        <tr>
+          <td>{{ report.title }}</td>
+          <td>{{ report.description }}</td>
+          <td>{{ report.created_at }}</td>
+          <!-- Ajoutez d'autres colonnes si nécessaire -->
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

@@ -1,0 +1,15 @@
+<!-- gestion/templates/gestion/home.html -->
+{% extends 'base.html' %}
+
+{% block title %}Page d'Accueil{% endblock %}
+
+{% block content %}
+  <h2>Derniers Articles de News</h2>
+  {% for article in articles %}
+    <div>
+      <h3>{{ article.title }}</h3>
+      <p>{{ article.content }}</p>
+      <p>Par {{ article.author.username }} le {{ article.created_at }}</p>
+    </div>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,35 @@
+<!-- gestion/templates/gestion/submit_report.html -->
+{% extends 'base.html' %}
+
+{% block title %}Soumettre un Rapport{% endblock %}
+
+{% block content %}
+  <h2>Formulaire de Soumission de Rapport</h2>
+  <form method="post" action="{% url 'submit_report' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+    
+    <div>
+      <label for="{{ form.title.id_for_label }}">Titre :</label>
+      {{ form.title }}
+    </div>
+    
+    <div>
+      <label for="{{ form.description.id_for_label }}">Description :</label>
+      {{ form.description }}
+    </div>
+
+    <div>
+      <label for="{{ form.file.id_for_label }}">Fichier :</label>
+      {{ form.file }}
+    </div>
+
+    <div>
+      <label for="{{ form.state.id_for_label }}">Etat :</label>
+      {{ form.state }}
+    </div>
+
+    <button type="submit">Soumettre</button>
+  </form>
+  
+  <a href="{% url 'home' %}">Retour à l'Accueil</a>
+{% endblock %}

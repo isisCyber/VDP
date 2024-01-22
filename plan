@@ -1,0 +1,31 @@
+Modèles de données :
+Définissez les modèles de données dans le fichier models.py de votre application pour représenter
+ les utilisateurs, les niveaux d'accréditation et les rapports.
+
+ Vues :
+Créez des vues pour gérer l'inscription, la connexion, l'accès aux rapports, et la soumission de
+ nouveaux rapports.
+
+Formulaires :
+Utilisez des formulaires Django pour faciliter la soumission des rapports par les utilisateurs.
+
+Niveaux d'accréditation :
+Utilisez des groupes d'utilisateurs pour gérer les niveaux d'accréditation. Chaque groupe peut avoir
+ des autorisations spécifiques.
+
+Middleware :
+Utilisez le middleware Django pour restreindre l'accès à certaines vues en fonction du niveau d'accréditation
+ de l'utilisateur.
+
+Templates :
+
+Créez des modèles HTML pour rendre l'interface utilisateur conviviale et intuitive.
+
+Gestion des fichiers statiques et médias :
+Configurez Django pour gérer les fichiers statiques (CSS, JavaScript) et les fichiers médias (rapports téléchargés).
+
+Sécurité :
+Mettez en place des mesures de sécurité, telles que l'utilisation de tokens CSRF, la validation côté serveur, etc.
+
+Tests :
+Rédigez des tests pour garantir le bon fonctionnement de votre application.

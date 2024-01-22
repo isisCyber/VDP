@@ -1,0 +1,34 @@
+<!-- base.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Mon Site{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'gestion/css/styless.css' %}">
+    <!-- Ajoutez ici vos liens vers des fichiers CSS supplémentaires si nécessaire -->
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="{% url 'home' %}">Accueil</a></li>
+        <li><a href="{% url 'profile' %}">Profil</a></li>
+        <li><a href="{% url 'submit_report' %}">Soumettre un Rapport</a></li>
+        <li><a href="{% url 'tableau' %}">Tableau</a></li> 
+        <!-- Ajoutez d'autres liens de navigation au besoin -->
+    </ul>
+</nav>
+
+<div>
+    {% block content %}{% endblock %}
+</div>
+
+<footer>
+    © 2024 INTERNET VDP. Vive la revolution.
+</footer>
+
+</body>
+</html>

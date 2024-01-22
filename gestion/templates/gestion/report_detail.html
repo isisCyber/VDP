@@ -1,0 +1,12 @@
+<!-- gestion/templates/gestion/report_detail.html -->
+{% extends 'base.html' %}
+
+{% block title %}Détails du Rapport{% endblock %}
+
+{% block content %}
+  <h2>Détails du Rapport</h2>
+  <h3>{{ report.title }}</h3>
+  <p>{{ report.content }}</p>
+  <!-- Ajoutez d'autres détails du rapport si nécessaire -->
+  <a href="{% url 'report_list' %}">Retour à la Liste des Rapports</a>
+{% endblock %}

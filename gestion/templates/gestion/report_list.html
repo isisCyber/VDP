@@ -1,0 +1,18 @@
+<!-- gestion/templates/gestion/report_list.html -->
+{% extends 'base.html' %}
+
+{% block title %}Liste des Rapports{% endblock %}
+
+{% block content %}
+  <h2>Liste des Rapports</h2>
+  <ul>
+    {% for report in report_list %}
+      <li>
+        <h3>{{ report.title }}</h3>
+        <p>{{ report.content }}</p>
+        <!-- Ajoutez d'autres détails du rapport si nécessaire -->
+        <a href="{% url 'report_detail' report.id %}">Détails</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
