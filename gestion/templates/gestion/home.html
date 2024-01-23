@@ -1,15 +1,28 @@
 <!-- gestion/templates/gestion/home.html -->
 {% extends 'base.html' %}
 
-{% block title %}Page d'Accueil{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block content %}
-  <h2>Derniers Articles de News</h2>
-  {% for article in articles %}
-    <div>
-      <h3>{{ article.title }}</h3>
-      <p>{{ article.content }}</p>
-      <p>Par {{ article.author.username }} le {{ article.created_at }}</p>
-    </div>
-  {% endfor %}
+  <div class="container">
+    <h2>Bienvenue sur la Plateforme de Rapports</h2>
+    
+    {% if articles %}
+      <h3>Derniers Articles</h3>
+      <ul>
+        {% for article in articles %}
+          <li>
+            <strong>{{ article.title }}</strong>
+            <p>{{ article.content }}</p>
+            <!-- Ajoutez d'autres informations d'article si nécessaire -->
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>Aucun article disponible pour le moment.</p>
+    {% endif %}
+    
+    <h3>Soumettre un Rapport</h3>
+    <p>Si vous avez un rapport à soumettre, <a href="{% url 'submit_report' %}">utilisez le formulaire ici</a>.</p>
+  </div>
 {% endblock %}

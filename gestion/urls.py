@@ -1,7 +1,7 @@
 # gestion/urls.py
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import home,tableau, profile, submit_report, report_list,logout1, report_detail, report_edit, report_delete, register
+from .views import home,tableau, profile, dashboard, submit_report, report_list,logout1, report_detail, report_edit, report_delete, register
 
 urlpatterns = [
     path('', home, name='home'),
@@ -15,4 +15,5 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('logout/', logout1, name='logout'),
     path('tableau/', tableau, name='tableau'),
+    path('dashboard/', dashboard, name='dashboard'),
 ]

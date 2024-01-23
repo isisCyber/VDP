@@ -11,11 +11,9 @@ class UserProfileForm(forms.ModelForm):
 
 
 class ReportForm(forms.ModelForm):
-    # Ajoutez le champ d'état au formulaire
-    state = forms.ChoiceField(choices=Report.STATE_CHOICES, initial='soumis', widget=forms.HiddenInput())
-
+    
     class Meta:
-        model = Report
+        model = Report 
         fields = ['title', 'description', 'file', 'state']
 
     def __init__(self, *args, **kwargs):

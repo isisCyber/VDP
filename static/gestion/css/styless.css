@@ -58,4 +58,6 @@ footer {
 nav {
     text-align: center;
 }
-
+#container{
+    margin-bottom: 60px;
+}

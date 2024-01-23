@@ -18,14 +18,18 @@ class Report(models.Model):
     description = models.TextField()
     file = models.FileField(upload_to='report_files/', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    STATE_CHOICES = [
-        ('soumis', 'Soumis'),
-        ('en_cours', 'En cours de traitement'),
-        ('resolu', 'Résolu'),
-        # Ajoutez d'autres états au besoin
+    STATUS_CHOICES = [
+        ('submitted', 'Soumis'),
+        ('in_progress', 'En cours'),
+        ('resolved', 'Résolu'),
     ]
-    state = models.CharField(max_length=20, choices=STATE_CHOICES, default='soumis')
-    file = models.FileField(upload_to='report_files/', blank=True, null=True)
+    state = models.CharField(max_length=20, choices=STATUS_CHOICES, default='submitted')
+
+
+# models.py
+
+class Dashboard(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
 
 
 class NewsArticle(models.Model):

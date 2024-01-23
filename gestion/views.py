@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
 from django.contrib.auth.models import AnonymousUser
+from chartjs.views.lines import BaseLineChartView
 from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from django.contrib.auth import login as auth_login, authenticate,login, logout
@@ -24,7 +25,22 @@ def logout1(request):
         return render(request, 'home.html')
 
 
+class ReportChartView(BaseLineChartView):
+    template_name = 'gestion/dashboard.html'
+    report_status_labels = ['Soumis', 'En cours', 'Résolu']
 
+    def get_labels(self):
+        return self.report_status_labels
+
+    def get_providers(self):
+        return ['Rapports']
+
+    def get_data(self):
+        data = [Report.objects.filter(user=self.request.user, status=status).count() for status in self.report_status_labels]
+        return [data]
+
+def dashboard(request):
+    return render(request, 'gestion/dashboard.html')
 
 #@login_required
 def home(request):
@@ -109,7 +125,7 @@ def report_delete(request, pk):
     return render(request, template_name, {'report': report})
 
 
-@login_required
+
 @login_required
 def submit_report(request):
     template_name = 'gestion/submit_report.html'
@@ -167,18 +183,20 @@ def register(request):
     return render(request, template_name, {'form': form})
 
 @login_required
+# views.py
+
 def tableau(request):
     template_name = 'gestion/tableau.html'
-
-    # Débogage pour vérifier si l'utilisateur est correctement authentifié
-    print(f"Utilisateur connecté : {request.user}")
-
-    # Gérer le cas où l'utilisateur est anonyme (non connecté)
-    if isinstance(request.user, AnonymousUser):
-        # Rediriger vers la page de connexion
-        return redirect('login')
-
-    # Filtrer les rapports en fonction de l'utilisateur connecté
     reports = Report.objects.filter(user=request.user)
 
-    return render(request, template_name, {'reports': reports})
+    if request.method == 'POST':
+        form = ReportForm(request.POST)
+        if form.is_valid():
+            report = form.save(commit=False)
+            report.user = request.user if request.user.is_authenticated else None
+            report.save()
+            messages.success(request, 'Le rapport a été soumis avec succès.')
+            return redirect('tableau')  # Redirige vers la page tableau après la soumission
+
+    form = ReportForm()
+    return render(request, template_name, {'reports': reports, 'form': form})
